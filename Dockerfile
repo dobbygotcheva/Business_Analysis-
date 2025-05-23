@@ -27,6 +27,7 @@ RUN ./gradlew clean build --info && \
 ENV PORT=8081
 ENV SPRING_APPLICATION_NAME=demo
 ENV SERVER_SERVLET_CONTEXT_PATH=/
+ENV SERVER_ADDRESS=0.0.0.0
 ENV JOINFACES_PRIMEFACES_THEME=saga
 ENV JOINFACES_PRIMEFACES_FONT_AWESOME=true
 ENV JOINFACES_VIEWS_PATH_PREFIX=/
@@ -46,7 +47,7 @@ ENV JAVAX_FACES_FACELETS_BUFFER_SIZE=65535
 ENV JAVAX_FACES_FACELETS_DEVELOPMENT=false
 
 # Expose the port
-EXPOSE 8081
+EXPOSE ${PORT}
 
 # Run the application using Spring Boot launcher with explicit view configuration and memory settings
-CMD ["sh", "-c", "cd /app && java -Xmx512m -Xms256m -jar build/libs/demo-0.0.1-SNAPSHOT.war --server.port=${PORT} --joinfaces.views.path-prefix=/ --joinfaces.views.path-suffix=.xhtml --server.servlet.context-path=/ --server.address=0.0.0.0"] 
+CMD ["sh", "-c", "cd /app && java -Xmx512m -Xms256m -jar build/libs/demo-0.0.1-SNAPSHOT.war --server.port=${PORT} --server.address=0.0.0.0 --joinfaces.views.path-prefix=/ --joinfaces.views.path-suffix=.xhtml --server.servlet.context-path=/"]
