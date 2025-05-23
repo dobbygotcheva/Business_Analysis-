@@ -13,8 +13,9 @@ COPY settings.gradle .
 # Make gradlew executable
 RUN chmod +x ./gradlew
 
-# Copy source code
+# Copy source code and resources
 COPY src src
+COPY .mvn .mvn
 
 # Build the application with verbose output
 RUN ./gradlew clean build --info && \
